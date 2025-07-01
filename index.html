@@ -215,6 +215,21 @@ const engine = new Engine(GODOT_CONFIG);
 	}
 }());
 		</script>
+		<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./service-worker.js')
+    .then(() => {
+      console.log('✅ Service worker registered');
+      if (!window.crossOriginIsolated) {
+        console.log('Reloading page to apply COOP/COEP headers...');
+        window.location.reload();
+      }
+    })
+    .catch(err => {
+      console.error('❌ Service worker registration failed:', err);
+    });
+}
+</script>
 	</body>
 </html>
 
